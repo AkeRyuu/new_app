@@ -1,0 +1,40 @@
+body,html {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.content {
+    margin: auto;
+}
+button {
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    font-size: 18px;
+    padding: 11px;
+    cursor: pointer;
+}
+button:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.modal {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+input {
+    border: 1px solid #cccccc; 
+   border-radius: 3px;
+   -webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+   -khtml-border-radius: 3px;
+   background: #ffffff !important;
+   outline: none; 
+   height: 24px; 
+   width: 120px; 
+   color: #262626; 
+   font-size: 11px;
+   font-family: Tahoma; 
+}
