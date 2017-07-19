@@ -4,7 +4,7 @@
 var $ = (value) => {
     return document.querySelector(value)
 }
-var action = '';
+var message = '';
 
 var end_read = (action,result) => {
     if (action == 'start') {
@@ -20,33 +20,63 @@ $('#start').addEventListener("click",() => {
     action='start';
     $('#main').style.display = "none";
     $('.modal').style.display = "flex";
-    $('.input').style.display = "block"; 
-    $('.input').focus();
+    key_start();
    })
 $('#end').addEventListener("click",() => {
     action='end';
     $('#main').style.display = "none";
     $('.modal').style.display = "flex";
-    $('.input').style.display = "block"; 
-    $('.input').focus();
+    key_start();
    })
 
+/*var read = () =>{
 $('.input').addEventListener('keypress', function(e){
-    console.log(e.charCode);
+    //console.log(e.charCode);
     if(e.charCode === 13) {
         $('#main').style.display = "block";
         $('.modal').style.display = "none";
-        $('.input').style.display = "none";
+        //$('.input').style.display = "none";
+        return $('.input').value;
         end_read(action,$('.input').value);
         $('.input').value = ''; 
     }
 })
+}*/
 
-$('body').addEventListener('keypress',(e) => {
-    if(e.which == 32 && $('#main').style.display == 'none'){
-        $('#main').style.display = "block";
+var key_start = () => $('body').addEventListener('keypress',keapress);
+var key_end = () => $('body').removeEventListener('keypress',keapress);
+
+var keapress = (e) => {
+    if(e.charCode == 13){
         $('.modal').style.display = "none";
-        $('.input').style.display = "none";
-        $('.input').value = ''; 
-    }
-});
+        if (action == 'start'){
+            $('#result').querySelector('.content').innerHTML = "<h4>" + message + " почав зміну.";
+            $('#result').style.display = "flex";
+            setTimeout(back, 1000);
+        } else {
+            $('#result').querySelector('.content').innerHTML = "<h4>" + message + " закінчив зміну.";
+            $('#result').style.display = "flex";
+            setTimeout(back, 1000);
+        }
+        
+        message = '';
+        key_end();
+    } else {
+        make_string(e.key);
+    }}
+
+var make_string = (char) => {
+    return message += char;
+}
+
+var back = () => {
+    $('#result').style.display = "none";
+    $('#main').style.display = "block";
+}
+
+/*$('.input').addEventListener('focus',(e)=>{
+    //var x = read();
+    var y = ;
+    //console.log(y);
+    console.log(e);
+})*/
