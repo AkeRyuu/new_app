@@ -49,14 +49,20 @@ var key_end = () => $('body').removeEventListener('keypress',keapress);
 var keapress = (e) => {
     if(e.charCode == 13){
         $('.modal').style.display = "none";
+        var minutes = new Date().getMinutes();
+        if (minutes < 10) {
+            minutes = "0" + minutes;
+        }
+        var time = new Date().getDate()+"."+(new Date().getMonth()+1)+"."+new Date().getFullYear()+" "+new Date().getHours()+":"+minutes;
         if (action == 'start'){
-            $('#result').querySelector('.content').innerHTML = "<h4>" + message + " почав зміну.";
+            //console.log();
+            $('#result').querySelector('.content').innerHTML = "<h4>" + message + " почав зміну "+time;
             $('#result').style.display = "flex";
-            setTimeout(back, 1000);
+            setTimeout(back, 2000);
         } else {
-            $('#result').querySelector('.content').innerHTML = "<h4>" + message + " закінчив зміну.";
+            $('#result').querySelector('.content').innerHTML = "<h4>" + message + " закінчив зміну "+time;
             $('#result').style.display = "flex";
-            setTimeout(back, 1000);
+            setTimeout(back, 2000);
         }
         
         message = '';
