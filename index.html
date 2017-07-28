@@ -7,31 +7,26 @@
   </head>
   <body>
     <div id="main" class="content">
-      <button id='start'>Почати зміну</button>
-      <button id='end'>Закінчити зміну</button>
-    </div>
-    <div class="modal">
-      <div class="content">
-        <div id="circularG">
-          <div id="circularG_1" class="circularG"></div>
-          <div id="circularG_2" class="circularG"></div>
-          <div id="circularG_3" class="circularG"></div>
-          <div id="circularG_4" class="circularG"></div>
-          <div id="circularG_5" class="circularG"></div>
-          <div id="circularG_6" class="circularG"></div>
-          <div id="circularG_7" class="circularG"></div>
-          <div id="circularG_8" class="circularG"></div>
-        </div>
-        <h4>Відскануйте штрихкод</h4>
-      </div>
-    </div>
-    <div class="modal" id="result">
-      <div class="content">
-      </div>
+      <label>host name</label>
+      <input type="text" id="host">
+      <label>port</label>
+      <input type="text" id="port">
+      <label>Шлях запиту</label>
+      <input type="text" id="path">
+      <label>Код</label>
+      <input type="text" id="code">
+      <label>Дія</label>
+      <input type="text" id="action">
+      <button id="send">відправити</button>
+      <h5>Запит</h5>
+      <p id="req"></p>
+      <h5>Результат</h5>
+      <p id="res"></p>
     </div>
   </body>
   <script>
     // You can also require other files to run in this process
+    var http = require('http');
     require('./renderer.js');
   </script>
 </html>
