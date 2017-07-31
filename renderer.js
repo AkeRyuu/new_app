@@ -1,7 +1,7 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
-var $ = (value) => {
+var $ = value => {
     return document.querySelector(value)
 }
 var message = '';
@@ -55,7 +55,6 @@ var keapress = (e) => {
         }
         var time = new Date().getDate()+"."+(new Date().getMonth()+1)+"."+new Date().getFullYear()+" "+new Date().getHours()+":"+minutes;
         if (action == 'start'){
-            //console.log();
             document.getElementById("r5t").innerHTML = "почав зміну";
             document.getElementById("r6t").innerHTML = time;
             $('#result').style.display = "block";
