@@ -56,13 +56,17 @@ var keapress = (e) => {
         var time = new Date().getDate()+"."+(new Date().getMonth()+1)+"."+new Date().getFullYear()+" "+new Date().getHours()+":"+minutes;
         if (action == 'start'){
             //console.log();
-            $('#result').querySelector('.content').innerHTML = "<h4>" + message + " почав зміну "+time;
-            $('#result').style.display = "flex";
-            setTimeout(back, 2000);
+            document.getElementById("r5t").innerHTML = "почав зміну";
+            document.getElementById("r6t").innerHTML = time;
+            $('#result').style.display = "block";
+            $('#result-div').style.display = "block";
+            setTimeout(back, 5000);
         } else {
-            $('#result').querySelector('.content').innerHTML = "<h4>" + message + " закінчив зміну "+time;
-            $('#result').style.display = "flex";
-            setTimeout(back, 2000);
+            document.getElementById("r5t").innerHTML = "закінчив зміну";
+            document.getElementById("r6t").innerHTML = time;
+            $('#result').style.display = "block";
+            $('#result-div').style.display = "block";
+            setTimeout(back, 5000);
         }
         
         message = '';
@@ -77,7 +81,7 @@ var make_string = (char) => {
 
 var back = () => {
     $('#result').style.display = "none";
-    $('#main').style.display = "block";
+    $('#main').style.display = "flex";
 }
 
 /*$('.input').addEventListener('focus',(e)=>{
