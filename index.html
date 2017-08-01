@@ -7,11 +7,15 @@
   </head>
   <body>
     <div id="main" class="content">
+      <button id="btn-settings"></button>
       <button id='start'>Почати зміну</button>
       <button id='end'>Закінчити зміну</button>
     </div>
     <div class="modal">
       <div class="content">
+        <button id="btn-settings"></button>
+        <div id="rotation"></div>
+        <!--
         <div id="circularG">
           <div id="circularG_1" class="circularG"></div>
           <div id="circularG_2" class="circularG"></div>
@@ -23,10 +27,42 @@
           <div id="circularG_8" class="circularG"></div>
         </div>
         <h4>Відскануйте штрихкод</h4>
+        -->
       </div>
     </div>
     <div class="modal" id="result">
-      <div class="content">
+      <button id="btn-settings"></button>
+      <div id="result-div" class="content">
+        <div id="error-bg"></div>
+        <h3>Дані успішно записані</h3>
+        <div class="result-rows" id="r1">
+          <h4>Дата зміни</h4>
+          <h4 id="r1t"></h4>
+        </div>
+        <div class="result-rows" id="r2">
+          <h4>Підрозділ</h4>
+          <h4 id="r2t"></h4>
+        </div>
+        <div class="result-rows" id="r3">
+          <h4>Підрозділ організації</h4>
+          <h4 id="r3t"></h4>
+        </div>
+        <div class="result-rows" id="r4">
+          <h4>Співробітник</h4>
+          <h4 id="r4t"></h4>
+        </div>
+        <div class="result-rows" id="r5">
+          <h4>Тип операції</h4>
+          <h4 id="r5t"></h4>
+        </div>
+        <div class="result-rows" id="r6">
+          <h4>Дата</h4>
+          <h4 id="r6t"></h4>
+        </div>
+        <div class="result-rows result-rows-last">
+          <h4 id="r7t">QQQQQQQQQQQQQQQQ</h4>
+          <h4 id="r8t">QQQQQQQQQQQQQAAA</h4>
+        </div>
       </div>
     </div>
   </body>
