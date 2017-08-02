@@ -1,6 +1,22 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
+const fs = require('fs');
+const path = require('path');
+const env = path.join(__dirname, '.env');
+
+
+fs.readFile(env, 'utf8', (err,data)=>{
+    if (err) {
+        return console.log(err);
+    }
+    data = JSON.parse(data);
+    console.log(data);
+    data.new_test++;
+    fs.writeFile(env, JSON.stringify(data), function (err) {
+        if (err) return console.log(err);
+    });
+});
 var $ = (value) => {
     return document.querySelector(value)
 }
@@ -29,19 +45,6 @@ $('#end').addEventListener("click",() => {
     key_start();
    })
 
-/*var read = () =>{
-$('.input').addEventListener('keypress', function(e){
-    //console.log(e.charCode);
-    if(e.charCode === 13) {
-        $('#main').style.display = "block";
-        $('.modal').style.display = "none";
-        //$('.input').style.display = "none";
-        return $('.input').value;
-        end_read(action,$('.input').value);
-        $('.input').value = ''; 
-    }
-})
-}*/
 
 var key_start = () => $('body').addEventListener('keypress',keapress);
 var key_end = () => $('body').removeEventListener('keypress',keapress);
@@ -55,14 +58,17 @@ var keapress = (e) => {
         }
         var time = new Date().getDate()+"."+(new Date().getMonth()+1)+"."+new Date().getFullYear()+" "+new Date().getHours()+":"+minutes;
         if (action == 'start'){
-            //console.log();
-            $('#result').querySelector('.content').innerHTML = "<h4>" + message + " почав зміну "+time;
-            $('#result').style.display = "flex";
-            setTimeout(back, 2000);
+            document.getElementById("r5t").innerHTML = "почав зміну";
+            document.getElementById("r6t").innerHTML = time;
+            $('#result').style.display = "block";
+            $('#result-div').style.display = "block";
+            setTimeout(back, 5000);
         } else {
-            $('#result').querySelector('.content').innerHTML = "<h4>" + message + " закінчив зміну "+time;
-            $('#result').style.display = "flex";
-            setTimeout(back, 2000);
+            document.getElementById("r5t").innerHTML = "закінчив зміну";
+            document.getElementById("r6t").innerHTML = time;
+            $('#result').style.display = "block";
+            $('#result-div').style.display = "block";
+            setTimeout(back, 5000);
         }
         
         message = '';
@@ -77,12 +83,6 @@ var make_string = (char) => {
 
 var back = () => {
     $('#result').style.display = "none";
-    $('#main').style.display = "block";
+    $('#main').style.display = "flex";
 }
-
-/*$('.input').addEventListener('focus',(e)=>{
-    //var x = read();
-    var y = ;
-    //console.log(y);
-    console.log(e);
-})*/
+console.log(process.env.new_test);
