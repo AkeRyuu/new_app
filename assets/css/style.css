@@ -73,17 +73,17 @@ body,html {
 .modal .content {
     margin: auto;
 }
-#result-div {
+.result-div {
 	color: #575759;
 	font-size: 36px;
 	font-weight: 400;
 }
 
-#result-div h3{
+.result-div h3{
 	font-size: .85em;
 	margin: 84px auto 48px auto !important;
 }
-#result-div h4{
+.result-div h4{
 	font-size: .7em;
 	margin-top: 20px;
 	margin-bottom: 20px;

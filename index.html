@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="modal" id="result">
-      <div id="result-div" class="content">
+      <div class="content result-div">
         <div id="error-bg"></div>
         <h3>Дані успішно записані</h3>
         <div class="result-rows" id="r1">
@@ -48,6 +48,25 @@
           <h4 id="r7t">QQQQQQQQQQQQQQQQ</h4>
           <h4 id="r8t">QQQQQQQQQQQQQAAA</h4>
         </div>
+      </div>
+    </div>
+    <div class="modal" id="settings">
+      <div class="content result-div">
+        <label>host name</label>
+        <input type="text" id="host">
+        <label>port</label>
+        <input type="text" id="port">
+        <label>Шлях запиту</label>
+        <input type="text" id="path">
+        <label>Код</label>
+        <input type="text" id="code">
+        <label>Дія</label>
+        <input type="text" id="action">
+        <button id="send">відправити</button>
+        <h5>Запит</h5>
+        <p id="req"></p>
+        <h5>Результат</h5>
+        <p id="res"></p>
       </div>
     </div>
   </body>
