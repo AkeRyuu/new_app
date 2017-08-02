@@ -1,22 +1,58 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
+const Promise = require("bluebird");
 const fs = require('fs');
 const path = require('path');
 const env = path.join(__dirname, '.env');
+const http = require('http');
+const readFile = Promise.promisify(require("fs").readFile);
 
+const getConfig = async () => {
+    let con = await readFile(env, {encoding:'utf8'});
+    con = JSON.parse(con);
+    $('#host').value = con.host;
+    $('#port').value = con.port;
+    $('#path').value = con.path;
+}
 
-fs.readFile(env, 'utf8', (err,data)=>{
-    if (err) {
-        return console.log(err);
-    }
-    data = JSON.parse(data);
-    console.log(data);
-    data.new_test++;
-    fs.writeFile(env, JSON.stringify(data), function (err) {
-        if (err) return console.log(err);
+var send = async (data) => {
+    // data = JSON.stringify(data);
+    let conn = await readFile(env,{encoding:'utf8'});
+    conn = JSON.parse(conn);
+    let options = {
+        hostname: conn.host,
+        port: conn.port,
+        path: conn.path,
+        method: 'POST',
+        headers : {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache',
+            'Content-Length': data.length
+        }
+    };
+
+    let req = http.request(options, (res) => {
+        res.setEncoding('utf8');
+        res.on('data', (chunk) => {
+            
+        });
+        res.on('end', () => {
+            console.log('No more data in response.');
+        });
     });
-});
+    req.on('error', (e) => {
+        console.error(`problem with request: ${e.message}`);
+    });
+    console.log(data);
+    console.log(conn);
+    req.write(data);
+    req.end();
+}
+var save_config = data => {
+    fs.writeFile(env, JSON.stringify(data),()=>{});
+}
+
 var $ = (value) => {
     return document.querySelector(value)
 }
@@ -52,67 +88,32 @@ var key_end = () => $('body').removeEventListener('keypress',keapress);
 var keapress = (e) => {
     if(e.charCode == 13){
         $('.modal').style.display = "none";
-        var minutes = new Date().getMinutes();
-        if (minutes < 10) {
-            minutes = "0" + minutes;
-        }
-        var time = new Date().getDate()+"."+(new Date().getMonth()+1)+"."+new Date().getFullYear()+" "+new Date().getHours()+":"+minutes;
-        if (action == 'start'){
-            document.getElementById("r5t").innerHTML = "почав зміну";
-            document.getElementById("r6t").innerHTML = time;
-            $('#result').style.display = "block";
-            $('#result-div').style.display = "block";
-            setTimeout(back, 5000);
-        } else {
-            document.getElementById("r5t").innerHTML = "закінчив зміну";
-            document.getElementById("r6t").innerHTML = time;
-            $('#result').style.display = "block";
-            $('#result-div').style.display = "block";
-            setTimeout(back, 5000);
-const http = require('http');
-
-var send = ()=>{
-    let postData = JSON.stringify({
-    Code: document.getElementById('code').value,
-    Operation: document.getElementById('action').value
-    });
-
-    let options = {
-    hostname: document.getElementById('host').value,
-    port: document.getElementById('port').value,
-    path: document.getElementById('path').value,
-    method: 'POST',
-    headers : {
-            'Content-Type': 'application/json',
-            'Cache-Control': 'no-cache',
-            'Content-Length': postData.length
-        }
-    };
-
-    let req = http.request(options, (res) => {
-
-    res.setEncoding('utf8');
-    res.on('data', (chunk) => {
-        document.getElementById('res').innerHTML = chunk;
-    });
-    res.on('end', () => {
-        console.log('No more data in response.');
-    });
-    });
-
-    req.on('error', (e) => {
-    console.error(`problem with request: ${e.message}`);
-    });
-
-    // write data to request body
-    req.write(postData);
-    req.end();
+        send(JSON.stringify({Code:message,Operation:action}));
+        $('#result').style.display = "block";
+        setTimeout(back('#wait'), 5000);
+        message = '';
+        key_end();
+    } else {
+        make_string(e.key);
+    }
 }
 
-var back = () => {
-    $('#result').style.display = "none";
+var make_string = (char) => {
+    return message += char;
+}
+
+var back = from => {
+    $(from).style.display = "none";
     $('#main').style.display = "flex";
 }
-console.log(process.env.new_test);
 
-document.getElementById('send').addEventListener('click',send);
+var go_settings = () => {
+    $('#main').style.display = "none";
+    $('#settings').style.display = "block";
+    getConfig();
+}
+
+
+$('#btn-settings').addEventListener('click',go_settings);
+$('#save').addEventListener('click',()=>save_config({host:$('#host').value,port:$('#port').value,path:$('#path').value}))
+$('#save').addEventListener('click',()=>back('#settings'));

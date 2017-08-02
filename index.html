@@ -11,7 +11,7 @@
       <button id="start">Почати зміну</button>
       <button id="end">Закінчити зміну</button>
     </div>
-    <div class="modal">
+    <div class="modal" id="wait">
       <div class="content">
         <div id="rotation"></div>
       </div>
@@ -52,21 +52,21 @@
     </div>
     <div class="modal" id="settings">
       <div class="content result-div">
-        <label>host name</label>
-        <input type="text" id="host">
-        <label>port</label>
-        <input type="text" id="port">
-        <label>Шлях запиту</label>
-        <input type="text" id="path">
-        <label>Код</label>
-        <input type="text" id="code">
-        <label>Дія</label>
-        <input type="text" id="action">
-        <button id="send">відправити</button>
-        <h5>Запит</h5>
-        <p id="req"></p>
-        <h5>Результат</h5>
-        <p id="res"></p>
+        <div class="settings">
+          <div class="setting_div">
+            <label>Назва хоста</label>
+            <input type="text" id="host">
+          </div>
+          <div class="setting_div">
+            <label>Номер порта</label>
+            <input type="text" id="port">
+          </div>
+          <div class="setting_div">
+            <label>Шлях запиту</label>
+            <input type="text" id="path">
+          </div>
+        </div>
+        <button id="save">Зберегти</button>
       </div>
     </div>
   </body>

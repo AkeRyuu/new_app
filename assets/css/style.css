@@ -224,3 +224,35 @@ button:hover {
 	display: none;
 	overflow: hidden;
 }
+
+
+/*
+settings 
+*/
+
+#settings .result-div {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.settings {
+    display: flex;
+    margin-left: 35px;
+    margin-top: auto;
+    margin-right: 35px;
+}
+
+#save {
+    margin: 25px auto auto auto;
+}
+
+.setting_div {
+    flex: 1;
+    font-size: 20px;
+    margin: 0 15px;
+}
+
+.setting_div input {
+    width: 100%;
+}
