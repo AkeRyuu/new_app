@@ -1,3 +1,5 @@
+const http = require('http');
+
 var send = ()=>{
     let postData = JSON.stringify({
     Code: document.getElementById('code').value,
@@ -32,9 +34,7 @@ var send = ()=>{
     });
 
     // write data to request body
-    req.write(postData,()=>{
-        document.getElementById('req').innerHTML = postData;
-    });
+    req.write(postData);
     req.end();
 }
 
