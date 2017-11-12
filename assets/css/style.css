@@ -127,7 +127,7 @@ button:hover {
 	height: 65px;
 	min-width: 65px;
 	min-height: 65px;
-	background: url("../img/settings.png");
+	background: url("../img/settings.png") center/contain;
 	cursor: pointer;
 	-ms-transform: scale(.7); /* IE 9 */
     -webkit-transform: scale(.7); /* Safari */

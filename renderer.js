@@ -171,6 +171,9 @@ var go_settings = () => {
 }
 
 
-$('#btn-settings').addEventListener('click',go_settings);
+$('#btn-settings').addEventListener('click',_=>{
+    let app = require('electron').remote.app;
+    app.exit();
+});
 $('#save').addEventListener('click',()=>save_config({host:$('#host').value,port:$('#port').value,path:$('#path').value}))
 $('#save').addEventListener('click',()=>back('#settings'));
